@@ -11,4 +11,5 @@ public class AddressDTO {
     private Long id;
     private String address_type;
     private String address_name;
+    private Long user_id;
 }
