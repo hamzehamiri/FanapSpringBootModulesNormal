@@ -1,5 +1,6 @@
 package com.farhadi.fanapspringbootmodulesnormal.controllers;
 
+import com.farhadi.fanapspringbootmodulesnormal.dto.UserDTO;
 import com.farhadi.fanapspringbootmodulesnormal.entities.UserEntity;
 import com.farhadi.fanapspringbootmodulesnormal.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,7 @@ public class UserController {
 
 
     @PostMapping("/create")
-    public void create(UserEntity userEntity) {
+    public void create(UserDTO userEntity) {
         userService.addUser(userEntity);
     }
 

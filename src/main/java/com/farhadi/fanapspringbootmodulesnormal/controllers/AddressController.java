@@ -1,5 +1,6 @@
 package com.farhadi.fanapspringbootmodulesnormal.controllers;
 
+import com.farhadi.fanapspringbootmodulesnormal.dto.AddressDTO;
 import com.farhadi.fanapspringbootmodulesnormal.entities.AddressEntity;
 import com.farhadi.fanapspringbootmodulesnormal.services.AddressService;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class AddressController {
     }
 
     @PostMapping("/create")
-    public void create(AddressEntity addressEntity) {
+    public void create(AddressDTO addressEntity) {
         addressService.create(addressEntity);
     }
 

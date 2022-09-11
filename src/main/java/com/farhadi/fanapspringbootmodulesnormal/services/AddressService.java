@@ -1,6 +1,8 @@
 package com.farhadi.fanapspringbootmodulesnormal.services;
 
+import com.farhadi.fanapspringbootmodulesnormal.dto.AddressDTO;
 import com.farhadi.fanapspringbootmodulesnormal.entities.AddressEntity;
+import com.farhadi.fanapspringbootmodulesnormal.mappers.AddressMapper;
 import com.farhadi.fanapspringbootmodulesnormal.repositories.AddressRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +19,8 @@ public class AddressService {
     }
 
     @Transactional(Transactional.TxType.REQUIRED)
-    public void create(AddressEntity addressEntity) {
-        addressRepository.save(addressEntity);
+    public void create(AddressDTO addressDTO) {
+        addressRepository.save(AddressMapper.MAPPER.toEntity(addressDTO));
     }
 
     @Transactional(Transactional.TxType.REQUIRED)

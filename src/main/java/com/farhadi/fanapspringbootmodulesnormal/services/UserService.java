@@ -1,6 +1,9 @@
 package com.farhadi.fanapspringbootmodulesnormal.services;
 
+import com.farhadi.fanapspringbootmodulesnormal.dto.UserDTO;
 import com.farhadi.fanapspringbootmodulesnormal.entities.UserEntity;
+import com.farhadi.fanapspringbootmodulesnormal.mappers.AddressMapper;
+import com.farhadi.fanapspringbootmodulesnormal.mappers.UserMapper;
 import com.farhadi.fanapspringbootmodulesnormal.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +18,8 @@ public class UserService {
     private UserRepository userRepository;
 
     @Transactional(Transactional.TxType.REQUIRED)
-    public UserEntity addUser(UserEntity userEntity) {
-        return userRepository.save(userEntity);
+    public UserEntity addUser(UserDTO userDTO) {
+        return userRepository.save(UserMapper.MAPPER.toEntity(userDTO));
     }
 
     @Transactional(Transactional.TxType.REQUIRED)

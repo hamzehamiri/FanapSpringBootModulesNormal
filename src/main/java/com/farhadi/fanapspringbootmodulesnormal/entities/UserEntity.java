@@ -24,8 +24,4 @@ public class UserEntity {
             cascade = CascadeType.ALL/*,
             orphanRemoval = true*/)
     private List<AddressEntity> addressEntities;
-
-    public UserEntity() {
-
-    }
 }
