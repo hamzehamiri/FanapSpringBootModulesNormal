@@ -34,4 +34,11 @@ public class AddressService {
         List<AddressEntity> listAddress = (List<AddressEntity>) addressRepository.findAll();
         return AddressMapper.MAPPER.toDTOs(listAddress);
     }
+
+    public void remainAddress(AddressEntity addressEntity) {
+        List<AddressEntity> addressRemaining = addressRepository.findByUserId(addressEntity.getUser().getId());
+        if (addressRemaining == null || addressRemaining.size() == 0) {
+//            userRepository.deleteById(addressEntity.getUser().getId());
+        }
+    }
 }
