@@ -26,6 +26,11 @@ public class AddressController {
         addressService.delete(id);
     }
 
+    @DeleteMapping("/deleteWithoutParent")
+    public void deleteWithoutParent(Long id) {
+        addressService.deleteWithoutParent(id);
+    }
+
     @GetMapping("/findAll")
     public List<AddressDTO> findAll() {
         return addressService.findAll();

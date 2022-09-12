@@ -43,6 +43,11 @@ public class AddressService {
         addressEntity.ifPresent(this::remainAddress);
     }
 
+    @Transactional
+    public void deleteWithoutParent(Long id) {
+        addressRepository.deleteById(id);
+    }
+
 
 //    public void delete(Long id){
 //        Session session = sessionFactory.openSession();
