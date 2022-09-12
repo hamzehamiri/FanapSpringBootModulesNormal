@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.UUID;
@@ -25,7 +27,8 @@ public class AddressEntity {
     @Column(name = "address_name")
     private String address_name;
 
-    @ManyToOne(fetch = FetchType.LAZY /*, cascade = CascadeType.REMOVE*/)
+    @ManyToOne(/*fetch = FetchType.LAZY , cascade = CascadeType.REMOVE*/)
     @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private UserEntity user;
 }
