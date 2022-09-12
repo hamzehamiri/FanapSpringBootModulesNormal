@@ -47,7 +47,7 @@ public class AddressService {
         NativeQuery query = session.createSQLQuery("delete from cool_schema.user u where (select count(a.id) from cool_schema.address a where a.user_id = :user_id) = 0 and u.id = :user_id");
         query.setParameter("user_id", addressEntity.getUser().getId());
         query.executeUpdate();
-        List ret = query.list();
+//        List ret = query.list();
         session.getTransaction().commit();
     }
 
