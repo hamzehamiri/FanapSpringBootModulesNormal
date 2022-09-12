@@ -5,15 +5,13 @@ import com.farhadi.fanapspringbootmodulesnormal.entities.AddressEntity;
 import com.farhadi.fanapspringbootmodulesnormal.mappers.AddressMapper;
 import com.farhadi.fanapspringbootmodulesnormal.repositories.AddressRepository;
 import com.farhadi.fanapspringbootmodulesnormal.repositories.UserRepository;
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.NativeQuery;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallbackWithoutResult;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 //@Transactional()
@@ -38,18 +36,25 @@ public class AddressService {
         addressRepository.save(entity);
     }
 
-
-    public void delete(Long id){
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        AddressEntity addressEntity = session.get(AddressEntity.class, id);
-        session.delete(addressEntity);
-        NativeQuery query = session.createSQLQuery("delete from cool_schema.user u where (select count(a.id) from cool_schema.address a where a.user_id = :user_id) = 0 and u.id = :user_id");
-        query.setParameter("user_id", addressEntity.getUser().getId());
-        query.executeUpdate();
-//        List ret = query.list();
-        session.getTransaction().commit();
+    @Transactional
+    public void delete(Long id) {
+        Optional<AddressEntity> addressEntity = addressRepository.findById(id);
+        addressRepository.deleteById(id);
+        addressEntity.ifPresent(this::remainAddress);
     }
+
+
+//    public void delete(Long id){
+//        Session session = sessionFactory.openSession();
+//        session.beginTransaction();
+//        AddressEntity addressEntity = session.get(AddressEntity.class, id);
+//        session.delete(addressEntity);
+//        NativeQuery query = session.createSQLQuery("delete from cool_schema.user u where (select count(a.id) from cool_schema.address a where a.user_id = :user_id) = 0 and u.id = :user_id");
+//        query.setParameter("user_id", addressEntity.getUser().getId());
+//        query.executeUpdate();
+////        List ret = query.list();
+//        session.getTransaction().commit();
+//    }
 
 //    @Transactional
 //    public void delete(Long id){
@@ -94,7 +99,7 @@ public class AddressService {
     public void remainAddress(AddressEntity addressEntity) {
         List<AddressEntity> addressRemaining = addressRepository.findByUserId(addressEntity.getUser().getId());
         if (addressRemaining == null || addressRemaining.size() == 0) {
-//            userRepository.deleteById(addressEntity.getUser().getId());
+            userRepository.deleteById(addressEntity.getUser().getId());
         }
     }
 }
