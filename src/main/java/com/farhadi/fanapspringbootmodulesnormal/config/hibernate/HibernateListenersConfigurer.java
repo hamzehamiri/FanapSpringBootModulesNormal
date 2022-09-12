@@ -13,7 +13,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.persistence.EntityManagerFactory;
 
-@Component
+//@Component
 public class HibernateListenersConfigurer {
     private static final Logger log = LoggerFactory.getLogger(HibernateListenersConfigurer.class);
 

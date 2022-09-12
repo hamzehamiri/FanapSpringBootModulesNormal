@@ -11,7 +11,7 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "address" , schema = "cool_schema")
-@EntityListeners(AddressListener.class)
+//@EntityListeners(AddressListener.class)
 @Setter
 @Getter
 public class AddressEntity {
