@@ -13,12 +13,15 @@ import java.util.UUID;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
 
     @PostMapping("/create")
-    public void create(UserDTO userEntity) {
+    public void create(@RequestBody UserDTO userEntity) {
         userService.addUser(userEntity);
     }
 
