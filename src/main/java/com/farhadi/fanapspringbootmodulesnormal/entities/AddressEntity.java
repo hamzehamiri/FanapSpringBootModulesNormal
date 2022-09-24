@@ -12,7 +12,7 @@ import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
-@Table(name = "address" , schema = "cool_schema")
+@Table(name = "address" , schema = "hamzehschema")
 //@EntityListeners(AddressListener.class)
 @Setter
 @Getter

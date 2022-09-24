@@ -4,6 +4,7 @@ import com.farhadi.fanapspringbootmodulesnormal.dto.AddressDTO;
 import com.farhadi.fanapspringbootmodulesnormal.services.AddressService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -17,7 +18,7 @@ public class AddressController {
     }
 
     @PostMapping("/create")
-    public void create(@RequestBody AddressDTO addressEntity) {
+    public void create(@Valid @RequestBody AddressDTO addressEntity) {
         addressService.create(addressEntity);
     }
 
