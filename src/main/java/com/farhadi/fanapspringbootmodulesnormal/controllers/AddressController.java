@@ -22,6 +22,11 @@ public class AddressController {
         addressService.create(addressEntity);
     }
 
+    @PostMapping("/update")
+    public void update(@RequestBody AddressDTO addressEntity) {
+        addressService.update(addressEntity);
+    }
+
     @DeleteMapping("/delete")
     public void delete(Long id) {
         addressService.delete(id);

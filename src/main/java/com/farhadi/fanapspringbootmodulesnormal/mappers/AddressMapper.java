@@ -2,8 +2,10 @@ package com.farhadi.fanapspringbootmodulesnormal.mappers;
 
 import com.farhadi.fanapspringbootmodulesnormal.dto.AddressDTO;
 import com.farhadi.fanapspringbootmodulesnormal.entities.AddressEntity;
+import org.mapstruct.BeanMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
@@ -16,6 +18,7 @@ public interface AddressMapper {
     @Mapping(source = "address_name", target = "address_name")
     @Mapping(source = "address_type", target = "address_type")
     @Mapping(source = "userDTO.id", target = "user.id")
+    @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
     AddressEntity toEntity(AddressDTO addressDTO);
 
     @Mapping(source = "id", target = "id")

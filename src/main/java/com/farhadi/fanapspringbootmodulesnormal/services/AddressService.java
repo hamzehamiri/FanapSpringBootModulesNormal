@@ -35,6 +35,13 @@ public class AddressService {
         AddressEntity entity = AddressMapper.MAPPER.toEntity(addressDTO);
         addressRepository.save(entity);
     }
+    public void update(AddressDTO addressDTO) {
+//        AddressEntity entity = addressRepository.findById(addressDTO.getId()).get();
+        AddressEntity entity = AddressMapper.MAPPER.toEntity(addressDTO);
+
+        addressRepository.save(entity);
+    }
+
 
     @Transactional
     public void delete(Long id) {
